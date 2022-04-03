@@ -25,8 +25,8 @@ public class AuraProjectiles : MonoBehaviour, IEffect
     public IProjectile projectile;
     [SerializeField]
     private List<Orb> orbs = new List<Orb>();
+    [SerializeField]
     private int orbCount = 6;
-
     [SerializeField]
     public float radius = 1f;
     [SerializeField]
@@ -38,7 +38,6 @@ public class AuraProjectiles : MonoBehaviour, IEffect
 
     void Start()
     {
-
         for (int i = 0; i < orbCount; i++)
         {
             var proj = Instantiate(projectile, transform);

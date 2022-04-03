@@ -30,7 +30,7 @@ public class Player : Unit
 
     public override void Move()
     {
-        _animator.SetBool("IsWalking", true);
+        _animator.SetBool("IsMoving", Mathf.Abs(_change.x) + Mathf.Abs(_change.y) > 0);
 
         //_rb.MovePosition(change * 2 * Speed * Time.deltaTime + transform.position);
 
