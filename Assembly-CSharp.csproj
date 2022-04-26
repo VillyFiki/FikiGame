@@ -50,8 +50,9 @@
      <Compile Include="Assets\Scripts\Units\Player\Inventory.cs" />
      <Compile Include="Assets\Scripts\Enteties\Weapoms\Projectiles\IProjectile.cs" />
      <Compile Include="Assets\Scripts\Units\Enemy.cs" />
-     <Compile Include="Assets\Scenes\SpotGenerator.cs" />
+     <Compile Include="Assets\Scripts\Effects\IEffect.cs" />
      <Compile Include="Assets\Scripts\Units\Enemy\Skeleton.cs" />
+     <Compile Include="Assets\Scripts\Effects\AuraProjectilesEffect.cs" />
      <Compile Include="Assets\Scripts\GameLogic\MobSpawner.cs" />
      <Compile Include="Assets\Scripts\GameLogic\WorldCreator.cs" />
      <Compile Include="Assets\Scripts\Effects\AuraProjectiles.cs" />
@@ -65,8 +66,6 @@
      <Compile Include="Assets\Scripts\Enums\UnitState.cs" />
      <Compile Include="Assets\Scripts\StaticClasses\Relationships.cs" />
      <Compile Include="Assets\Scripts\Units\Player\Player.cs" />
-     <Compile Include="Assets\Scripts\Effects\IEffect.cs" />
-     <Compile Include="Assets\Scripts\Effects\AuraProjectilesEffect.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

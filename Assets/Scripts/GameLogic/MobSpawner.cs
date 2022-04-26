@@ -17,6 +17,9 @@ public class MobSpawner : MonoBehaviour
     [SerializeField]
     private Enemy Skeleton;
 
+    [SerializeField]
+    private Collider2D[] SpawningZones;
+
     private float timeBeforeSpawning;
     private const float spawningCooldown = 2f;
     private System.Random rnd = new System.Random();
@@ -31,68 +34,32 @@ public class MobSpawner : MonoBehaviour
 
         if (timeBeforeSpawning >= spawningCooldown)
         {
-            var orient1 = RandomExtension.ShuffleRange(0, 1);
-            var edge = rnd.Next(2);
-            Vector2 spawningPos = new Vector2();
-            Vector2 max = Camera.ViewportToWorldPoint(new Vector2(orient1[0], orient1[1]));
+            var spawningPos = new Vector2(0,0);
+            var zone = rnd.Next(SpawningZones.Length);
+
+
+            var width = SpawningZones[zone].transform.localScale.x;
+            var height = SpawningZones[zone].transform.localScale.y;
+
+            var xc = SpawningZones[zone].transform.position.x;
+            var yc = SpawningZones[zone].transform.position.y;
+
+            var xl = xc - width / 2;
+            var xr = xc + width / 2;
+
+            var yt = yc + height / 2;
+            var yb = yc - height / 2;
+
+            var a = new Vector2(xc - width / 2, yc + height / 2);
+            var b = new Vector2(xc + width / 2, yc - height / 2);
+
+            timeBeforeSpawning = 0;
             
-            Vector2 min = Camera.ViewportToWorldPoint(new Vector2(edge, edge));
-            
-            if (edge == 1)
-            {
-                if (orient1[0] == 1)
-                {
-                    max += Vector2.right * 10;
-                    min += Vector2.right * 10;
-
-                    max += Vector2.down * 10;
-                    min += Vector2.up * 10;
-                }
-                else
-                {
-                    max += Vector2.up * 10;
-                    min += Vector2.up * 10;
-
-                    max += Vector2.left * 10;
-                    min += Vector2.right * 10;
-                }
-
-                var tmp = min;
-                min = max;
-                max = tmp;
-            }
-            else
-            {
-                if (orient1[0] == 1)
-                {
-                    max += Vector2.down * 10;
-                    min += Vector2.down * 10;
-
-                    max += Vector2.right * 10;
-                    min += Vector2.left * 10;
-                }
-                else
-                {
-                    max += Vector2.left * 10;
-                    min += Vector2.left * 10;
-
-                    max += Vector2.up * 10;
-                    min += Vector2.down * 10;
-                }
-            }
-
-            
-            
-            var randomX = rnd.Next((int)min.x, (int)max.x) + (float)rnd.NextDouble();
-            var randomY = rnd.Next((int)min.y, (int)max.y) + (float)rnd.NextDouble();
-
-            spawningPos.x = randomX;
-            spawningPos.y = randomY;
+            spawningPos.x = rnd.Next((int)a.x, (int)b.x) + (float)rnd.NextDouble();
+            spawningPos.y = rnd.Next((int)b.y, (int)a.y) + (float)rnd.NextDouble();
 
             var mob1 = Instantiate(Skeleton);
             mob1.transform.position = spawningPos;
-            
-            timeBeforeSpawning = 0;
         }
 
         timeBeforeSpawning += Time.deltaTime;
